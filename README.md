@@ -1,20 +1,25 @@
-# React-Bootstrap [![Travis][build-badge]][build] [![npm][npm-badge]][npm]
+# react-bootstrap-externaljs
 
-[Bootstrap 3][bootstrap] components built with [React][react].
+**
+This fork of [react-bootstrap] mainly aims on adding bootstrap's `data-*` attributes in the right places to optimize the usage of external bootstrap.js.
+**
 
-[![Codecov][codecov-badge]][codecov]
-[![Discord][discord-badge]][discord]
-[![Thinkful][thinkful-badge]][thinkful]
+In a perfect world [react-bootstrap] and [bootstrap.js]/[bootstrap.native] never meet. Fortunately my world isn't perfect and i can do silly things like this. Currently react-bootstrap has no intentions to [support] these data-attributes.
 
-__Under active development - APIs will change.__ Check out the [1.0.0 roadmap](https://github.com/react-bootstrap/react-bootstrap/wiki#100-roadmap) and [contributing guidelines][contributing] to see where you can help out. Prior to the 1.0.0 release, deprecations or breaking changes will result in a minor version bump.
+**If you're unsure, you better just stick with regular [react-bootstrap],** as you may find more silly things here...
 
-## Docs
+## use case example
+- You create a website with [GatsbyJS] (a static site generator) and [skip] bundle creation when building for `prod`.
+- For bootstrap's functionality you mess with `bootstrap.native.js` (tested, working great) or the original `bootstrap.js` (untested) in `prod`.
+- You reimplement any additional functionality from `dev` with plain js in e.g. `static.js` for `prod`.
+- So, you have already brought down overall js size in `prod` from ~500Kb to ~5Kb? Congratulations...
 
-See the [documentation][documentation] with live editable examples.
+If you now also want to use data-attributes to minimize the need for custom code, thus further reducing js size in `prod`, [react-bootstrap-externaljs] is what you need.
 
-## Related modules
+Also, remember how to enable [ScrollSpy] with data-attributes only? Just do it.
 
-- [react-router-bootstrap][react-router-bootstrap] – Integration with [React Router][react-router]
+## Usage
+`npm install react-bootstrap-externaljs`
 
 ## Local setup
 
@@ -25,30 +30,13 @@ See the [documentation][documentation] with live editable examples.
   for file changes as you work. Simply refresh the page to see the updates.
 - Build with `npm run build`
 
-## Contributions
+[react-bootstrap]: https://github.com/react-bootstrap/react-bootstrap
+[support]: https://github.com/react-bootstrap/react-bootstrap/issues/2510
+[react-bootstrap-externaljs]: https://github.com/sillyslux/react-bootstrap-externaljs
 
-Yes please! See the [contributing guidelines][contributing] for details.
+[bootstrap.native]: https://github.com/thednp/bootstrap.native/
+[ScrollSpy]: http://getbootstrap.com/javascript/#via-data-attributes-2
+[bootstrap.js]: http://getbootstrap.com/customize/#plugins
 
-[bootstrap]: http://getbootstrap.com
-[react]: http://facebook.github.io/react/
-
-[documentation]: http://react-bootstrap.github.io
-[contributing]: CONTRIBUTING.md
-
-[build-badge]: https://travis-ci.org/react-bootstrap/react-bootstrap.svg?branch=master
-[build]: https://travis-ci.org/react-bootstrap/react-bootstrap
-
-[npm-badge]: https://badge.fury.io/js/react-bootstrap.svg
-[npm]: http://badge.fury.io/js/react-bootstrap
-
-[react-router-bootstrap]: https://github.com/react-bootstrap/react-router-bootstrap
-[react-router]: https://github.com/reactjs/react-router
-
-[thinkful-badge]: https://tf-assets-staging.s3.amazonaws.com/badges/thinkful_repo_badge.svg
-[thinkful]: http://start.thinkful.com/react/?utm_source=github&utm_medium=badge&utm_campaign=react-bootstrap
-
-[codecov-badge]: https://img.shields.io/codecov/c/github/react-bootstrap/react-bootstrap/master.svg
-[codecov]: https://codecov.io/gh/react-bootstrap/react-bootstrap
-
-[discord-badge]: https://img.shields.io/badge/Discord-Join%20chat%20%E2%86%92-738bd7.svg
-[discord]: https://discord.gg/0ZcbPKXt5bXLs9XK
+[GatsbyJS]: https://github.com/gatsbyjs/gatsby
+[skip]: https://github.com/gatsbyjs/gatsby#structure-of-a-gatsby-site
