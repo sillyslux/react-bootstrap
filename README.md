@@ -1,8 +1,6 @@
 # react-bootstrap-externaljs
 
-**
-This fork of [react-bootstrap] mainly aims on adding bootstrap's `data-*` attributes in the right places to optimize the usage of external bootstrap.js.
-**
+**This fork of [react-bootstrap] mainly aims on adding bootstrap's `data-*` attributes in the right places to optimize the usage of external bootstrap.js.**
 
 In a perfect world [react-bootstrap] and [bootstrap.js]/[bootstrap.native] never meet. Fortunately my world isn't perfect and i can do silly things like this. Currently react-bootstrap has no intentions to [support] these data-attributes.
 

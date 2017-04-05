@@ -1,12 +1,12 @@
 {
-  "name": "react-bootstrap",
+  "name": "react-bootstrap-externaljs",
   "version": "0.30.8-silly.1",
-  "description": "Bootstrap 3 components built with React",
+  "description": "react-bootstrap fork with data-* attributes for external bootstrap.js",
   "repository": {
     "type": "git",
-    "url": "react-bootstrap/react-bootstrap"
+    "url": "sillyslux/react-bootstrap-externaljs"
   },
-  "homepage": "https://react-bootstrap.github.io/",
+  "homepage": "",
   "scripts": {
     "build": "babel-node tools/build-cli.js",
     "docs": "babel-node docs/dev-run.js",
@@ -130,7 +130,5 @@
     "warning": "^3.0.0"
   },
   "release-script": {
-    "bowerRepo": "git@github.com:react-bootstrap/react-bootstrap-bower.git",
-    "docsRepo": "git@github.com:react-bootstrap/react-bootstrap.github.io.git"
   }
 }
