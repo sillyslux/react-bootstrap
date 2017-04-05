@@ -8,6 +8,7 @@ import { State } from './utils/StyleConfig';
 const propTypes = {
   onDismiss: React.PropTypes.func,
   closeLabel: React.PropTypes.string,
+  dangerouslySetInnerHTML: React.PropTypes.shape({ __html: React.PropTypes.string }),
 };
 
 const defaultProps = {
@@ -42,7 +43,7 @@ class Alert extends React.Component {
   }
 
   render() {
-    const { onDismiss, closeLabel, className, children, ...props } =
+    const { onDismiss, closeLabel, className, children, dangerouslySetInnerHTML: htmlContent, ...props } =
       this.props;
     const [bsProps, elementProps] = splitBsProps(props);
 
@@ -59,7 +60,7 @@ class Alert extends React.Component {
         className={classNames(className, classes)}
       >
         {dismissable && this.renderDismissButton(onDismiss)}
-        {children}
+        {htmlContent ? (<div dangerouslySetInnerHTML={{ __html: htmlContent.__html }} />) : children}
         {dismissable && this.renderSrOnlyDismissButton(onDismiss, closeLabel)}
       </div>
     );
