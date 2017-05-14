@@ -8,14 +8,9 @@ import { State } from './utils/StyleConfig';
 import CloseButton from './CloseButton';
 
 const propTypes = {
-<<<<<<< HEAD
-  onDismiss: React.PropTypes.func,
-  closeLabel: React.PropTypes.string,
-  dangerouslySetInnerHTML: React.PropTypes.shape({ __html: React.PropTypes.string }),
-=======
   onDismiss: PropTypes.func,
   closeLabel: PropTypes.string,
->>>>>>> upstream
+  dangerouslySetInnerHTML: PropTypes.shape({ __html: PropTypes.string }),
 };
 
 const defaultProps = {
@@ -40,19 +35,13 @@ class Alert extends React.Component {
         role="alert"
         className={classNames(className, classes)}
       >
-<<<<<<< HEAD
-        {dismissable && this.renderDismissButton(onDismiss)}
-        {htmlContent ? (<div dangerouslySetInnerHTML={{ __html: htmlContent.__html }} />) : children}
-        {dismissable && this.renderSrOnlyDismissButton(onDismiss, closeLabel)}
-=======
         {dismissable && (
           <CloseButton
             onClick={onDismiss}
             label={closeLabel}
           />
         )}
-        {children}
->>>>>>> upstream
+        {htmlContent ? (<div dangerouslySetInnerHTML={{ __html: htmlContent.__html }} />) : children}
       </div>
     );
   }

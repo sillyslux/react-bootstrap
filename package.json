@@ -1,13 +1,7 @@
 {
-<<<<<<< HEAD
   "name": "react-bootstrap-externaljs",
   "version": "0.30.8-silly.1",
   "description": "react-bootstrap fork with data-* attributes for external bootstrap.js",
-=======
-  "name": "react-bootstrap",
-  "version": "0.31.0",
-  "description": "Bootstrap 3 components built with React",
->>>>>>> upstream
   "repository": {
     "type": "git",
     "url": "sillyslux/react-bootstrap-externaljs"
