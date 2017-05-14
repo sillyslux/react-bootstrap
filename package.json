@@ -1,6 +1,6 @@
 {
   "name": "react-bootstrap-externaljs",
-  "version": "0.30.8-silly.1",
+  "version": "0.31.0-silly.0",
   "description": "react-bootstrap fork with data-* attributes for external bootstrap.js",
   "repository": {
     "type": "git",
@@ -130,6 +130,5 @@
     "uncontrollable": "^4.1.0",
     "warning": "^3.0.0"
   },
-  "release-script": {
-  }
+  "release-script": {}
 }
