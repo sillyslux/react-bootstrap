@@ -3,6 +3,7 @@ import activeElement from 'dom-helpers/activeElement';
 import contains from 'dom-helpers/query/contains';
 import keycode from 'keycode';
 import React, { cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import all from 'react-prop-types/lib/all';
 import elementType from 'react-prop-types/lib/elementType';
@@ -25,15 +26,15 @@ const propTypes = {
   /**
    * The menu will open above the dropdown button, instead of below it.
    */
-  dropup: React.PropTypes.bool,
+  dropup: PropTypes.bool,
 
   /**
    * An html id attribute, necessary for assistive technologies, such as screen readers.
    * @type {string|number}
    * @required
    */
-  id: isRequiredForA11y(React.PropTypes.oneOfType([
-    React.PropTypes.string, React.PropTypes.number,
+  id: isRequiredForA11y(PropTypes.oneOfType([
+    PropTypes.string, PropTypes.number,
   ])),
 
   componentClass: elementType,
@@ -50,24 +51,19 @@ const propTypes = {
   /**
    * Whether or not component is disabled.
    */
-  disabled: React.PropTypes.bool,
+  disabled: PropTypes.bool,
 
   /**
    * Align the menu to the right side of the Dropdown toggle
    */
-  pullRight: React.PropTypes.bool,
+  pullRight: PropTypes.bool,
 
   /**
    * Whether or not the Dropdown is visible.
    *
    * @controllable onToggle
    */
-  open: React.PropTypes.bool,
-
-  /**
-   * A callback fired when the Dropdown closes.
-   */
-  onClose: React.PropTypes.func,
+  open: PropTypes.bool,
 
   /**
    * A callback fired when the Dropdown wishes to change visibility. Called with the requested
@@ -78,7 +74,7 @@ const propTypes = {
    * ```
    * @controllable open
    */
-  onToggle: React.PropTypes.func,
+  onToggle: PropTypes.func,
 
   /**
    * A callback fired when a menu item is selected.
@@ -87,27 +83,27 @@ const propTypes = {
    * (eventKey: any, event: Object) => any
    * ```
    */
-  onSelect: React.PropTypes.func,
+  onSelect: PropTypes.func,
 
   /**
    * If `'menuitem'`, causes the dropdown to behave like a menu item rather than
    * a menu button.
    */
-  role: React.PropTypes.string,
+  role: PropTypes.string,
 
   /**
    * Which event when fired outside the component will cause it to be closed
    */
-  rootCloseEvent: React.PropTypes.oneOf(['click', 'mousedown']),
+  rootCloseEvent: PropTypes.oneOf(['click', 'mousedown']),
 
   /**
    * @private
    */
-  onMouseEnter: React.PropTypes.func,
+  onMouseEnter: PropTypes.func,
   /**
    * @private
    */
-  onMouseLeave: React.PropTypes.func,
+  onMouseLeave: PropTypes.func,
 };
 
 const defaultProps = {
@@ -147,7 +143,7 @@ class Dropdown extends React.Component {
     }
 
     if (!open && prevOpen) {
-      // if focus hasn't already moved from the menu lets return it
+      // if focus hasn't already moved from the menu let's return it
       // to the toggle
       if (this._focusInDropdown) {
         this._focusInDropdown = false;
@@ -255,7 +251,7 @@ class Dropdown extends React.Component {
     });
   }
 
-  renderMenu(child, { id, onClose, onSelect, rootCloseEvent, ...props }) {
+  renderMenu(child, { id, onSelect, rootCloseEvent, ...props }) {
     let ref = c => { this.menu = c; };
 
     if (typeof child.ref === 'string') {
@@ -274,9 +270,7 @@ class Dropdown extends React.Component {
       labelledBy: id,
       bsClass: prefix(props, 'menu'),
       onClose: createChainedFunction(
-        child.props.onClose,
-        onClose,
-        this.handleClose,
+        child.props.onClose, this.handleClose,
       ),
       onSelect: createChainedFunction(
         child.props.onSelect,
@@ -295,7 +289,6 @@ class Dropdown extends React.Component {
       disabled,
       pullRight,
       open,
-      onClose,
       onSelect,
       role,
       bsClass,
@@ -334,7 +327,7 @@ class Dropdown extends React.Component {
               });
             case MENU_ROLE:
               return this.renderMenu(child, {
-                id, open, pullRight, bsClass, onClose, onSelect, rootCloseEvent,
+                id, open, pullRight, bsClass, onSelect, rootCloseEvent,
               });
             default:
               return child;

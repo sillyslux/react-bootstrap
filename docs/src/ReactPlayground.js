@@ -4,6 +4,7 @@
 /* eslint-disable */
 const classNames = require('classnames');
 const React = require('react');
+const PropTypes = require('prop-types');
 const ReactDOM = require('react-dom');
 
 // Keep these in sync with src/index.js.
@@ -65,6 +66,8 @@ const Table = require('../../src/Table');
 const TabPane = require('../../src/TabPane');
 const Tabs = require('../../src/Tabs');
 const Thumbnail = require('../../src/Thumbnail');
+const ToggleButton = require('../../src/ToggleButton');
+const ToggleButtonGroup = require('../../src/ToggleButtonGroup');
 const Tooltip = require('../../src/Tooltip');
 const Well = require('../../src/Well');
 
@@ -159,8 +162,8 @@ const ReactPlayground = React.createClass({
   mixins: [selfCleaningTimeout],
 
   propTypes: {
-    codeText: React.PropTypes.string.isRequired,
-    transformer: React.PropTypes.func
+    codeText: PropTypes.string.isRequired,
+    transformer: PropTypes.func
   },
 
   getDefaultProps() {

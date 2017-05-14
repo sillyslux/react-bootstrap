@@ -1,14 +1,21 @@
 import classNames from 'classnames';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { bsClass, bsStyles, getClassSet, prefix, splitBsProps }
   from './utils/bootstrapUtils';
 import { State } from './utils/StyleConfig';
+import CloseButton from './CloseButton';
 
 const propTypes = {
+<<<<<<< HEAD
   onDismiss: React.PropTypes.func,
   closeLabel: React.PropTypes.string,
   dangerouslySetInnerHTML: React.PropTypes.shape({ __html: React.PropTypes.string }),
+=======
+  onDismiss: PropTypes.func,
+  closeLabel: PropTypes.string,
+>>>>>>> upstream
 };
 
 const defaultProps = {
@@ -16,32 +23,6 @@ const defaultProps = {
 };
 
 class Alert extends React.Component {
-  renderDismissButton(onDismiss) {
-    return (
-      <button
-        type="button"
-        className="close"
-        onClick={onDismiss}
-        aria-hidden="true"
-        tabIndex="-1"
-      >
-        <span>&times;</span>
-      </button>
-    );
-  }
-
-  renderSrOnlyDismissButton(onDismiss, closeLabel) {
-    return (
-      <button
-        type="button"
-        className="close sr-only"
-        onClick={onDismiss}
-      >
-        {closeLabel}
-      </button>
-    );
-  }
-
   render() {
     const { onDismiss, closeLabel, className, children, dangerouslySetInnerHTML: htmlContent, ...props } =
       this.props;
@@ -59,9 +40,19 @@ class Alert extends React.Component {
         role="alert"
         className={classNames(className, classes)}
       >
+<<<<<<< HEAD
         {dismissable && this.renderDismissButton(onDismiss)}
         {htmlContent ? (<div dangerouslySetInnerHTML={{ __html: htmlContent.__html }} />) : children}
         {dismissable && this.renderSrOnlyDismissButton(onDismiss, closeLabel)}
+=======
+        {dismissable && (
+          <CloseButton
+            onClick={onDismiss}
+            label={closeLabel}
+          />
+        )}
+        {children}
+>>>>>>> upstream
       </div>
     );
   }

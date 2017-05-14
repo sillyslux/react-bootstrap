@@ -1,47 +1,49 @@
 import classNames from 'classnames';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { bsClass, getClassSet, splitBsProps } from './utils/bootstrapUtils';
 import createChainedFunction from './utils/createChainedFunction';
+import CloseButton from './CloseButton';
 
 // TODO: `aria-label` should be `closeLabel`.
 
 const propTypes = {
   /**
-   * The 'aria-label' attribute provides an accessible label for the close
+   * Provides an accessible label for the close
    * button. It is used for Assistive Technology when the label text is not
    * readable.
    */
-  'aria-label': React.PropTypes.string,
+  closeLabel: PropTypes.string,
 
   /**
    * Specify whether the Component should contain a close button
    */
-  closeButton: React.PropTypes.bool,
+  closeButton: PropTypes.bool,
 
   /**
    * A Callback fired when the close button is clicked. If used directly inside
    * a Modal component, the onHide will automatically be propagated up to the
    * parent Modal `onHide`.
    */
-  onHide: React.PropTypes.func,
+  onHide: PropTypes.func,
 };
 
 const defaultProps = {
-  'aria-label': 'Close',
+  closeLabel: 'Close',
   closeButton: false,
 };
 
 const contextTypes = {
-  $bs_modal: React.PropTypes.shape({
-    onHide: React.PropTypes.func,
+  $bs_modal: PropTypes.shape({
+    onHide: PropTypes.func,
   }),
 };
 
 class ModalHeader extends React.Component {
   render() {
     const {
-      'aria-label': label,
+      closeLabel,
       closeButton,
       onHide,
       className,
@@ -60,18 +62,12 @@ class ModalHeader extends React.Component {
         {...elementProps}
         className={classNames(className, classes)}
       >
-        {closeButton &&
-          <button
-            type="button"
-            className="close"
-            aria-label={label}
+        {closeButton && (
+          <CloseButton
+            label={closeLabel}
             onClick={createChainedFunction(modal && modal.onHide, onHide)}
-          >
-            <span aria-hidden="true">
-              &times;
-            </span>
-          </button>
-        }
+          />
+        )}
 
         {children}
       </div>
